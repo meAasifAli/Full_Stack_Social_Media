@@ -1,5 +1,5 @@
 import Conversation from '../models/conversation-model.js'
-import Message from '../models/message-model.js'
+import Message from '../models/Message-model.js'
 import { v2 as cloudinary } from 'cloudinary'
 import { getReceiverSocketId, io } from '../socket/socket.js'
 
