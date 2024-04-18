@@ -1,7 +1,7 @@
 import { useState } from "react"
 import useShowToast from "./useShowToast"
 import axios from "axios"
-import { AUTH_BASE_URL } from '../constants/index'
+
 import useAuthStore from "../store/useAuthStore"
 
 const useSignup = () => {
@@ -26,7 +26,7 @@ const useSignup = () => {
         }
 
         try {
-            const res = await axios.post(`${AUTH_BASE_URL}/signup`, inputs)
+            const res = await axios.post(`https://full-stack-social-media-pq4h.onrender.com/api/auth/signup`, inputs)
 
             if (res?.status === 201) {
                 setAuthUser(res?.data)

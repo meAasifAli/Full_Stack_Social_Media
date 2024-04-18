@@ -1,7 +1,7 @@
 import axios from "axios"
 import useShowToast from "./useShowToast"
 import { useState } from "react"
-import { POST_BASE_URL } from "../constants"
+
 import { useNavigate } from "react-router-dom"
 
 
@@ -14,7 +14,7 @@ const useUpdatePost = () => {
     const handleUpdatePost = async (postId, postData) => {
         setLoading(true)
         try {
-            const res = await axios.put(`${POST_BASE_URL}/edit/${postId}`, postData)
+            const res = await axios.put(`https://full-stack-social-media-pq4h.onrender.com/api/post/edit/${postId}`, postData)
             if (res?.status === 200) {
 
                 showToast({

@@ -1,12 +1,12 @@
 import axios from "axios";
 import useShowToast from "./useShowToast";
-import { USER_BASE_URL } from "../constants";
+
 
 const useFollowUnfollow = () => {
     const { showToast } = useShowToast()
     const handleFollowUnfollow = async (userToFollow) => {
         try {
-            const res = await axios.post(`${USER_BASE_URL}/follow/${userToFollow._id}`)
+            const res = await axios.post(`https://full-stack-social-media-pq4h.onrender.com/api/user/follow/${userToFollow._id}`)
 
             if (res?.status === 200) {
                 showToast({

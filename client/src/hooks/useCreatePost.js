@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
 import useShowToast from './useShowToast'
-import { POST_BASE_URL } from '../constants/index'
 import { useNavigate } from 'react-router-dom'
 
 const useCreatePost = () => {
@@ -12,7 +11,7 @@ const useCreatePost = () => {
     const handleCreatePost = async (postData) => {
         setLoading(true)
         try {
-            const res = await axios.post(`${POST_BASE_URL}/create`, postData)
+            const res = await axios.post(`https://full-stack-social-media-pq4h.onrender.com/api/post/create`, postData)
 
             if (res.status === 200) {
                 showToast({

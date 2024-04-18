@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import useShowToast from './useShowToast'
 import axios from 'axios'
-import { POST_BASE_URL } from '../constants'
+
 
 function useCommentPost() {
     const { showToast } = useShowToast()
@@ -10,7 +10,7 @@ function useCommentPost() {
     const handleAddComment = async (postId, text) => {
         setLoading(true)
         try {
-            const res = await axios.post(`${POST_BASE_URL}/comment/${postId}`, { text })
+            const res = await axios.post(`https://full-stack-social-media-pq4h.onrender.com/api/post/comment/${postId}`, { text })
             if (res.status === 201) {
                 showToast({
                     title: "success",

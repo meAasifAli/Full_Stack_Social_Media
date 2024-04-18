@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { USER_BASE_URL } from "../constants/index"
+
 
 const useGetSingleUser = (userID) => {
     const [userData, setUserData] = useState({})
@@ -9,7 +9,7 @@ const useGetSingleUser = (userID) => {
         const fetchSingle = async () => {
             setLoading(true)
             try {
-                const res = await axios.get(`${USER_BASE_URL}/${userID}`)
+                const res = await axios.get(`https://full-stack-social-media-pq4h.onrender.com/api/user/${userID}`)
                 if (res.status === 200) {
                     setUserData(res?.data)
                 }

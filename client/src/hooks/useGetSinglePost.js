@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { POST_BASE_URL } from "../constants"
+
 
 
 const useGetSinglePost = (postID) => {
@@ -12,7 +12,7 @@ const useGetSinglePost = (postID) => {
         const fetchSinglePost = async () => {
             setLoading(true)
             try {
-                const res = await axios.get(`${POST_BASE_URL}/${postID}`)
+                const res = await axios.get(`https://full-stack-social-media-pq4h.onrender.com/api/post/${postID}`)
                 console.log(res?.data);
                 setPost(res?.data)
 

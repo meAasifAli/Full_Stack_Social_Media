@@ -1,7 +1,7 @@
 import { useState } from "react"
 import useShowToast from "./useShowToast"
 import axios from "axios"
-import { MSG_BASE_URL } from "../constants"
+
 import useMsgStore from "../store/useMsgStore"
 
 const useSendMessage = (receiverID) => {
@@ -12,7 +12,7 @@ const useSendMessage = (receiverID) => {
     const handleSendMessage = async (message) => {
         setLoading(true)
         try {
-            const res = await axios.post(`${MSG_BASE_URL}/send/${receiverID}`, message)
+            const res = await axios.post(`https://full-stack-social-media-pq4h.onrender.com/api/message/send/${receiverID}`, message)
             if (res?.status === 201) {
                 setMessages([...messages, res.data])
             }

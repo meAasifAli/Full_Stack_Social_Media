@@ -1,5 +1,4 @@
 import axios from "axios"
-import { POST_BASE_URL } from "../constants"
 import useShowToast from "./useShowToast"
 
 
@@ -7,7 +6,7 @@ const useDeleteComment = () => {
     const { showToast } = useShowToast()
     const handleDeleteComment = async (commentID) => {
         try {
-            const res = await axios.delete(`${POST_BASE_URL}/delete/comment/${commentID}`)
+            const res = await axios.delete(`https://full-stack-social-media-pq4h.onrender.com/api/post/delete/comment/${commentID}`)
             // console.log(res)
             if (res?.status === 200) {
                 showToast({

@@ -1,6 +1,5 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { MSG_BASE_URL } from "../constants"
 import useMsgStore from "../store/useMsgStore"
 
 const useGetMessages = (receiverID) => {
@@ -10,7 +9,7 @@ const useGetMessages = (receiverID) => {
     useEffect(() => {
         const fetchMessages = async () => {
             try {
-                const res = await axios.get(`${MSG_BASE_URL}/getall/${receiverID}`)
+                const res = await axios.get(`https://full-stack-social-media-pq4h.onrender.com/api/message/getall/${receiverID}`)
 
                 if (res?.status === 200) {
                     setMessages(res?.data)

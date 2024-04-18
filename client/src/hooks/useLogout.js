@@ -1,5 +1,5 @@
 import axios from "axios"
-import { AUTH_BASE_URL } from "../constants"
+
 import useAuthStore from "../store/useAuthStore"
 import useShowToast from "./useShowToast"
 
@@ -8,7 +8,7 @@ const useLogout = () => {
     const { showToast } = useShowToast()
     const handleLogout = async () => {
 
-        await axios.post(`${AUTH_BASE_URL}/logout`)
+        await axios.post(`https://full-stack-social-media-pq4h.onrender.com/api/auth/logout`)
         setAuthUser(null)
         localStorage.removeItem("authUser")
         showToast({

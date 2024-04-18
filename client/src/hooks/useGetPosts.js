@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { POST_BASE_URL } from "../constants/index"
+
 import usePostStore from '../store/usePostStore'
 
 const useGetPosts = () => {
@@ -12,7 +12,7 @@ const useGetPosts = () => {
         const fetchPosts = async () => {
             setLoading(true)
             try {
-                const res = await axios.get(`${POST_BASE_URL}`)
+                const res = await axios.get(`https://full-stack-social-media-pq4h.onrender.com/api/post`)
                 if (res?.status === 200) {
                     setPosts(res?.data)
                 }

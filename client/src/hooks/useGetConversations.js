@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { USER_BASE_URL } from "../constants/index"
+
 import axios from 'axios'
 import useConversationStore from "../store/useConversation"
 
@@ -11,7 +11,7 @@ const useGetConversations = () => {
         const getConversations = async () => {
             setLoading(true)
             try {
-                const res = await axios.get(`${USER_BASE_URL}`)
+                const res = await axios.get(`https://full-stack-social-media-pq4h.onrender.com/api/user`)
                 if (res?.status === 200) {
                     setConversations(res?.data)
                 }

@@ -1,6 +1,5 @@
 import useShowToast from './useShowToast'
 import axios from 'axios'
-import { POST_BASE_URL } from '../constants/index'
 import usePostStore from '../store/usePostStore'
 
 const useDeletePost = () => {
@@ -9,7 +8,7 @@ const useDeletePost = () => {
 
     const handleDeletePost = async (postId) => {
         try {
-            const res = await axios.delete(`${POST_BASE_URL}/delete/${postId}`)
+            const res = await axios.delete(`https://full-stack-social-media-pq4h.onrender.com/api/post/delete/${postId}`)
             if (res?.status === 200) {
                 // console.log(res?.data);
                 setPosts(posts?.filter((post) => post._id !== postId))

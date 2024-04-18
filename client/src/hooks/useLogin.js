@@ -1,7 +1,7 @@
 import { useState } from "react"
 import useShowToast from "./useShowToast"
 import axios from "axios"
-import { AUTH_BASE_URL } from "../constants"
+
 import useAuthStore from "../store/useAuthStore"
 
 const useLogin = () => {
@@ -12,7 +12,7 @@ const useLogin = () => {
     const handleLogin = async (inputs) => {
         setLoading(true)
         try {
-            const res = await axios.post(`${AUTH_BASE_URL}/login`, inputs)
+            const res = await axios.post(`https://full-stack-social-media-pq4h.onrender.com/api/auth/login`, inputs)
             if (res?.status === 200) {
                 setAuthUser(res?.data)
                 localStorage?.setItem("authUser", JSON.stringify(res?.data))
