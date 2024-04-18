@@ -7,7 +7,7 @@ import { v2 as cloudinary } from 'cloudinary'
 
 import { app, server } from './socket/socket.js'
 
-import connectToMongoDb from './config/db.js'
+import connectToMongoDb from './config/DB.js'
 import authRoutes from './routes/auth-routes.js'
 import userRoutes from './routes/user-routes.js'
 import postRoutes from './routes/post-routes.js'
