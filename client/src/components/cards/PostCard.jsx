@@ -1,4 +1,4 @@
-import { Avatar, Box, Divider, Flex, HStack, Image, Menu, MenuButton, MenuItem, MenuList, Portal, Text, useDisclosure, VStack } from "@chakra-ui/react"
+import { Avatar, Box, Divider, Flex, HStack, Image, Input, Menu, MenuButton, MenuItem, MenuList, Portal, Text, useDisclosure, VStack } from "@chakra-ui/react"
 import { FaHeart, FaRegComment, FaRegHeart } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
 import ModalComponent from "../modal/Modal"
@@ -6,6 +6,7 @@ import { BsThreeDots } from "react-icons/bs"
 import useAuthStore from "../../store/useAuthStore"
 import useLikeUnlikePost from "../../hooks/useLikeUnlikePost"
 import useDeletePost from "../../hooks/useDeletePost"
+import { getDate } from "../../constants/utility"
 
 const PostCard = ({ post }) => {
     const { handleDeletePost } = useDeletePost()
@@ -17,16 +18,18 @@ const PostCard = ({ post }) => {
     const deletePost = async () => {
         await handleDeletePost(post?._id)
     }
+
     return (
-        <HStack w={"100%"} h={"100%"} justify={"space-between"} align={"start"} overflow={"auto"}>
-            <Box display={"flex"} w={"100%"} flexDir={"row"} justifyContent={"start"} alignItems={"start"} gap={[2, 4]}>
+        <HStack w={"100%"} h={"100%"} justify={"space-between"} align={"start"} p={[2, 6]}>
+            <Box display={"flex"} w={"100%"} flexDir={"row"} justifyContent={"start"} alignItems={"start"} gap={[4, 6]}>
                 <Flex>
                     <Avatar onClick={() => navigate(`/${post?.postedBy._id}`)} size={"md"} src={post?.postedBy?.profilePic} />
                 </Flex>
-                <VStack justify={"start"} align={"start"} gap={4} w={"100%"}>
+                <VStack justify={"start"} align={"start"} w={"100%"}>
                     <Text fontWeight={"500"}>{post?.postedBy?.fullname}</Text>
-                    <Text fontSize={"small"} fontWeight={"400"} color={"gray"}>{post?.text}</Text>
-                    {post?.photo && <Image height={[200, 300]} width={[200, 300]} src={post?.photo} />}
+                    <Text fontSize={'small'} fontWeight={"300"}>{getDate(post?.createdAt)}</Text>
+                    <Text fontSize={"medium"} fontWeight={"400"} color={"GrayText"} py={2}>{post?.text}</Text>
+                    {post?.photo && <Image height={["100%", 300]} width={["100%", 300]} src={post?.photo} objectFit={"cover"} />}
                     <HStack py={2} gap={6}>
                         <VStack>
                             <Flex onClick={() => handleLikeUnlikePost(post?._id)} cursor={"pointer"}>
@@ -51,20 +54,28 @@ const PostCard = ({ post }) => {
                             />
                         </Box>
                     </HStack>
-                    <Divider orientation="horizontal" w={"full"} />
+                    <Text>{post?.comments?.length > 0 && "View all comments"}</Text>
+
+                    <Input
+                        placeholder="Add your comment"
+                        variant={"flushed"}
+                    />
+
 
                 </VStack>
             </Box>
 
             <Menu>
-                <MenuButton> <BsThreeDots size={20} /></MenuButton>
+                <MenuButton>
+                    <BsThreeDots size={20} />
+                </MenuButton>
                 <Portal>
-                    <MenuList bg={"crimson"}>
-                        <MenuItem bg={"crimson"} onClick={() => navigate(`/edit/${post._id}`)}>Edit</MenuItem>
+                    <MenuList >
+                        <MenuItem onClick={() => navigate(`/edit/${post._id}`)}>Edit</MenuItem>
                         <Divider bg={"gray"} orientation="horizontal" w={"full"} />
-                        <MenuItem onClick={() => deletePost(post?._id)} bg={"crimson"}>Delete</MenuItem>
+                        <MenuItem onClick={() => deletePost(post?._id)} >Delete</MenuItem>
                         <Divider bg={"gray"} orientation="horizontal" w={"full"} />
-                        <MenuItem bg={"crimson"} onClick={() => navigate(`/post/${post._id}`)}>Post Detail</MenuItem>
+                        <MenuItem onClick={() => navigate(`/post/${post._id}`)}>Post Detail</MenuItem>
                     </MenuList>
                 </Portal>
             </Menu>

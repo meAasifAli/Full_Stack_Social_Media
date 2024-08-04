@@ -12,7 +12,7 @@ const useGetSinglePost = (postID) => {
         const fetchSinglePost = async () => {
             setLoading(true)
             try {
-                const res = await axios.get(`https://full-stack-social-media-pq4h.onrender.com/api/post/${postID}`)
+                const res = await axios.get(`http://localhost:5000/api/post/${postID}`)
                 console.log(res?.data);
                 setPost(res?.data)
 

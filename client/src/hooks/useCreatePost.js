@@ -11,7 +11,7 @@ const useCreatePost = () => {
     const handleCreatePost = async (postData) => {
         setLoading(true)
         try {
-            const res = await axios.post(`https://full-stack-social-media-pq4h.onrender.com/api/post/create`, postData)
+            const res = await axios.post(`http://localhost:5000/api/post/create`, postData)
 
             if (res.status === 200) {
                 showToast({

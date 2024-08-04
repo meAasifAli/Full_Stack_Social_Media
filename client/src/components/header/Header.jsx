@@ -1,11 +1,14 @@
 import {
     HStack,
     useColorMode, IconButton,
-    useColorModeValue, Drawer,
-    useDisclosure, DrawerOverlay,
-    DrawerContent, DrawerHeader,
-    DrawerBody, Text,
-    Avatar, VStack
+    useColorModeValue,
+    useDisclosure, Text,
+    Avatar, VStack,
+    Stack,
+    Menu,
+    MenuList,
+    MenuItem,
+    Divider
 } from "@chakra-ui/react"
 import { FiMoon } from "react-icons/fi";
 import { LuSunMoon } from "react-icons/lu";
@@ -17,9 +20,9 @@ import useAuthStore from "../../store/useAuthStore";
 import { CiHome } from "react-icons/ci";
 import { LuPenSquare } from "react-icons/lu";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { FaFacebookMessenger } from "react-icons/fa";
 import useGetSingleUser from "../../hooks/useGetSingleUser";
-
+import { PiMessengerLogo } from "react-icons/pi";
+import { FaShareAlt } from "react-icons/fa";
 
 const Header = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -34,35 +37,49 @@ const Header = () => {
         await handleLogout()
     }
     return (
-        <HStack justifyContent={"space-between"} align={"center"} py={4} w={"100%"}>
+        <VStack justify={'space-between'} align={'start'} p={4} w={'100%'} bg={useColorModeValue("gray.800", "gray.dark")} h={'100vh'}>
+            <VStack justify={'start'} align={'start'} w={'100%'}>
+                <Stack mb={8}>
+                    <HStack gap={2} >
+                        <FaShareAlt size={24} color="blue" />
+                        <Text fontSize={"large"} fontWeight={"500"} color={useColorModeValue('white', 'white')}>ShareFun</Text>
+                    </HStack>
+                </Stack>
+                <HStack _hover={{ bg: useColorModeValue('gray.600', 'gray.dark'), w: "100%" }} cursor={'pointer'} onClick={() => navigate("/")} rounded={"lg"} w={'100%'} p={2} justify={"start"} align={"start"}>
+                    <CiHome size={20} color="white" />
+                    <Text color={'white'}>Home</Text>
+                </HStack>
+                <HStack _hover={{ bg: useColorModeValue('gray.600', 'gray.dark'), w: "100%" }} cursor={'pointer'} onClick={() => navigate(`/${authUser._id}`)} w={'100%'} p={2} rounded={"lg"} >
+                    <IoPersonOutline size={20} color="white" />
+                    <Text color={'white'}>Profile</Text>
+                </HStack>
+                <HStack _hover={{ bg: useColorModeValue('gray.600', 'gray.dark'), w: "100%" }} cursor={'pointer'} onClick={() => navigate(`/messenger`)} w={'100%'} p={2} rounded={"lg"} >
+                    <PiMessengerLogo size={20} color="white" />
+                    <Text color={'white'}>Messenger</Text>
+                </HStack>
+                <HStack _hover={{ bg: useColorModeValue('gray.600', 'gray.dark'), w: "100%" }} cursor={'pointer'} onClick={() => navigate(`/create`)} w={'100%'} p={2} rounded={"lg"} >
+                    <LuPenSquare size={20} color="white" />
+                    <Text color={'white'}>Create Post</Text>
+                </HStack>
 
-            <IconButton onClick={() => navigate("/")} rounded={"100%"} bg={useColorModeValue("white", "gray.dark")}>
-                <CiHome size={20} />
-            </IconButton>
-            <IconButton onClick={() => navigate(`/${authUser._id}`)} rounded={"100%"} bg={useColorModeValue("white", "gray.dark")}>
-                <IoPersonOutline size={20} />
-            </IconButton>
-            <IconButton onClick={() => navigate("/create")} rounded={"100%"} bg={useColorModeValue("white", "gray.dark")}>
-                <LuPenSquare size={20} />
-            </IconButton>
+            </VStack>
+            <HStack _hover={{ bg: useColorModeValue('gray.600', 'gray.dark'), w: "100%" }} cursor={'pointer'} onClick={onOpen} w={'100%'} p={2} rounded={"lg"} >
+                <GiHamburgerMenu size={20} color="white" />
+                <Text color={'white'}>More</Text>
+            </HStack>
 
-            <IconButton onClick={onOpen} rounded={"100%"} bg={useColorModeValue("white", "gray.dark")}>
-                <GiHamburgerMenu size={20} />
-            </IconButton>
+            <Menu bg={useColorModeValue("gray.600", "gray.dark")} onClose={onClose} isOpen={isOpen}>
 
-            <Drawer bg={useColorModeValue("white", "gray.dark")} placement={"right"} onClose={onClose} isOpen={isOpen}>
-                <DrawerOverlay />
-                <DrawerContent bg={useColorModeValue("white", "gray.dark")}>
-                    <DrawerHeader borderBottomWidth='1px'>
-                        <HStack justify={"start"} align="start">
-                            <Avatar size={"lg"} src={userData?.profilePic} />
-                            <VStack justify={"start"} align="start">
-                                <Text>{userData?.fullname}</Text>
-                                <Text fontSize={"15px"}>{userData?.email}</Text>
-                            </VStack>
-                        </HStack>
-                    </DrawerHeader>
-                    <DrawerBody display={"flex"} flexDir={"column"} gap={[4, 6]} justifyContent={"start"} alignItems={"start"} bg={useColorModeValue("white", "gray.dark")}>
+                <MenuList bg={useColorModeValue("white", "gray.dark")}>
+                    <HStack justify={"start"} align="start">
+                        <Avatar size={"md"} src={userData?.profilePic} />
+                        <VStack justify={"start"} align="start">
+                            <Text fontSize={"12px"}>{userData?.fullname}</Text>
+                            <Text fontSize={"12px"}>{userData?.email}</Text>
+                        </VStack>
+                    </HStack>
+                    <Divider py={2} />
+                    <MenuItem>
                         <HStack cursor={"pointer"} onClick={toggleColorMode}>
                             <IconButton rounded={"100%"} bg={useColorModeValue("white", "gray.dark")}>
                                 {
@@ -72,24 +89,20 @@ const Header = () => {
                             </IconButton>
                             <Text>Theme</Text>
                         </HStack>
-
-                        <HStack onClick={() => navigate("/messenger")} cursor={"pointer"}>
-                            <IconButton rounded={"100%"} bg={useColorModeValue("white", "gray.dark")}>
-                                <FaFacebookMessenger size={20} />
-                            </IconButton>
-                            <Text>Messenger</Text>
-                        </HStack>
-
+                    </MenuItem>
+                    <MenuItem>
                         <HStack cursor={"pointer"} onClick={handleSubmit}>
                             <IconButton rounded={"100%"} bg={useColorModeValue("white", "gray.dark")}>
                                 <RiLogoutCircleRLine size={20} />
                             </IconButton>
                             <Text>Signout</Text>
                         </HStack>
-                    </DrawerBody>
-                </DrawerContent>
-            </Drawer>
-        </HStack>
+                    </MenuItem>
+                </MenuList>
+
+
+            </Menu>
+        </VStack>
     )
 }
 export default Header

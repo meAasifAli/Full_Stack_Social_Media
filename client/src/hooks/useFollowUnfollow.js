@@ -6,7 +6,7 @@ const useFollowUnfollow = () => {
     const { showToast } = useShowToast()
     const handleFollowUnfollow = async (userToFollow) => {
         try {
-            const res = await axios.post(`https://full-stack-social-media-pq4h.onrender.com/api/user/follow/${userToFollow._id}`)
+            const res = await axios.post(`http://localhost:5000/api/user/follow/${userToFollow._id}`)
 
             if (res?.status === 200) {
                 showToast({

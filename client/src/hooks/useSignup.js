@@ -26,7 +26,7 @@ const useSignup = () => {
         }
 
         try {
-            const res = await axios.post(`https://full-stack-social-media-pq4h.onrender.com/api/auth/signup`, inputs)
+            const res = await axios.post(`http://localhost:5000/api/auth/signup`, inputs)
 
             if (res?.status === 201) {
                 setAuthUser(res?.data)

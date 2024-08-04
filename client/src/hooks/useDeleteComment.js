@@ -6,7 +6,7 @@ const useDeleteComment = () => {
     const { showToast } = useShowToast()
     const handleDeleteComment = async (commentID) => {
         try {
-            const res = await axios.delete(`https://full-stack-social-media-pq4h.onrender.com/api/post/delete/comment/${commentID}`)
+            const res = await axios.delete(`http://localhost:5000/api/post/delete/comment/${commentID}`)
             // console.log(res)
             if (res?.status === 200) {
                 showToast({

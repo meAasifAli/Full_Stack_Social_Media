@@ -10,7 +10,7 @@ function useCommentPost() {
     const handleAddComment = async (postId, text) => {
         setLoading(true)
         try {
-            const res = await axios.post(`https://full-stack-social-media-pq4h.onrender.com/api/post/comment/${postId}`, { text })
+            const res = await axios.post(`http://localhost:5000/api/post/comment/${postId}`, { text })
             if (res.status === 201) {
                 showToast({
                     title: "success",

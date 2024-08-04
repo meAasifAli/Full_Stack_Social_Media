@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Image, Input, Spinner, VStack } from "@chakra-ui/react"
+import { Button, Container, Flex, Image, Input, Spinner, Text, Textarea, VStack } from "@chakra-ui/react"
 import useGetSinglePost from "../../hooks/useGetSinglePost"
 import { useParams } from "react-router-dom"
 import { useEffect, useRef, useState } from "react"
@@ -26,26 +26,29 @@ const EditPost = () => {
     return loading ? <Flex h="100vh" justify={"center"} align={"center"} w={"100%"}>
         <Spinner size={"xl"} />
     </Flex> : (
-        <VStack justify="start" align={"start"} gap={4} w={["100%", "50%"]}>
-            <Heading>Edit Post</Heading>
-            {
-                imgUrl && <Flex justify={"center"} align={"center"}>
-                    <Image src={post?.image || imgUrl} alt="" />
-                </Flex>
-            }
-            <Input
-                py={2}
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-            />
-            <Input type="file" ref={fileRef} onChange={handleImageChange} display={"none"} />
-            <FaLink onClick={() => fileRef.current.click()} color="crimson" size={20} />
-            <Button bg={"crimson"} w={"100%"} onClick={handleClick}>
+        <Container maxW={"container.sm"}>
+            <VStack justify="start" align={"start"} gap={4} >
+                <Text textAlign={"center"} fontWeight={"bold"}>Create a new Post</Text>
                 {
-                    updateLoader ? <Spinner size={"sm"} /> : "Update"
+                    imgUrl && <Flex justify={"center"} align={"center"}>
+                        <Image src={post?.image || imgUrl} alt="" />
+                    </Flex>
                 }
-            </Button>
-        </VStack>
+                <Textarea
+                    py={2}
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    rows={12}
+                />
+                <Input type="file" ref={fileRef} onChange={handleImageChange} display={"none"} />
+                <FaLink onClick={() => fileRef.current.click()} color="crimson" size={20} />
+                <Button w={"100%"} onClick={handleClick}>
+                    {
+                        updateLoader ? <Spinner size={"sm"} /> : "Update"
+                    }
+                </Button>
+            </VStack>
+        </Container>
     )
 }
 export default EditPost

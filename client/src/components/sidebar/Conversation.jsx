@@ -13,7 +13,7 @@ const Conversation = ({ conversation, lastID }) => {
         setSelectedConversation(conversation)
     }
     return (
-        <VStack cursor={"pointer"} p={2} rounded={"xl"} bg={isSelected ? "purple.500" : ""} onClick={() => handleAddCoversation(conversation)} w={"100%"} justify={"start"} align={"start"}>
+        <VStack cursor={"pointer"} p={2} rounded={"xl"} bg={isSelected ? "gray.300" : ""} onClick={() => handleAddCoversation(conversation)} w={"100%"} justify={"start"} align={"start"}>
             <HStack gap={4} justify={"space-between"} align={"start"} w={"full"}>
                 <HStack w={"full"}>
                     <Avatar src={conversation?.profilePic} />

@@ -23,7 +23,7 @@ const MessageSend = ({ loading, handleSendMessage }) => {
                 placeholder="type your message" />
             <Input ref={imgRef} onChange={handleImageChange} type="file" display={"none"} />
             {imgUrl ? <Avatar onClick={() => setImgUrl("")} src={imgUrl} size={"sm"} /> : <FaImages onClick={() => imgRef.current.click()} size={30} />}
-            <Button onClick={handleSubmit} type="submit" bg={"purple.500"}>{loading ? <Spinner size={"sm"} /> : "Send"}</Button>
+            <Button onClick={handleSubmit} type="submit" bg={"gray.300"}>{loading ? <Spinner size={"sm"} /> : "Send"}</Button>
         </HStack>
     )
 }

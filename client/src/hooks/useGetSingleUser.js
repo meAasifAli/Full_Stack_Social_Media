@@ -9,7 +9,7 @@ const useGetSingleUser = (userID) => {
         const fetchSingle = async () => {
             setLoading(true)
             try {
-                const res = await axios.get(`https://full-stack-social-media-pq4h.onrender.com/api/user/${userID}`)
+                const res = await axios.get(`http://localhost:5000/api/user/${userID}`)
                 if (res.status === 200) {
                     setUserData(res?.data)
                 }

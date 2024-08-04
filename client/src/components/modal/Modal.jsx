@@ -97,7 +97,6 @@ const ModalComponent = ({ isOpen, onClose, title, authUser, flag, post }) => {
                                                     size="sm"
                                                     rounded="full"
                                                     top="-10px"
-                                                    colorScheme="red"
                                                     aria-label="remove Image"
                                                     icon={<SmallCloseIcon />}
                                                 />
@@ -188,7 +187,7 @@ const ModalComponent = ({ isOpen, onClose, title, authUser, flag, post }) => {
                 </ModalBody>
                 <ModalFooter>
                     {
-                        flag === "isProfile" && <Button onClick={handleSubmit} type='submit' bg={"blueviolet"} mr={3}>
+                        flag === "isProfile" && <Button onClick={handleSubmit} type='submit' mr={3}>
                             {loading ? <Spinner size={"sm"} /> : "update"}
                         </Button>
                     }

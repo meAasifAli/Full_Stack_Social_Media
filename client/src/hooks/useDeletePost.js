@@ -8,7 +8,7 @@ const useDeletePost = () => {
 
     const handleDeletePost = async (postId) => {
         try {
-            const res = await axios.delete(`https://full-stack-social-media-pq4h.onrender.com/api/post/delete/${postId}`)
+            const res = await axios.delete(`http://localhost:5000/api/post/delete/${postId}`)
             if (res?.status === 200) {
                 // console.log(res?.data);
                 setPosts(posts?.filter((post) => post._id !== postId))
