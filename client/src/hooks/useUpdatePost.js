@@ -14,7 +14,7 @@ const useUpdatePost = () => {
     const handleUpdatePost = async (postId, postData) => {
         setLoading(true)
         try {
-            const res = await axios.put(`http://localhost:5000/api/post/edit/${postId}`, postData)
+            const res = await axios.put(`https://full-stack-social-media-pq4h.onrender.com/api/post/edit/${postId}`, postData)
             if (res?.status === 200) {
 
                 showToast({

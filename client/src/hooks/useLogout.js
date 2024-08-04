@@ -8,7 +8,7 @@ const useLogout = () => {
     const { showToast } = useShowToast()
     const handleLogout = async () => {
 
-        await axios.post(`http://localhost:5000/api/auth/logout`)
+        await axios.post(`https://full-stack-social-media-pq4h.onrender.com/api/auth/logout`)
         setAuthUser(null)
         localStorage.removeItem("authUser")
         showToast({

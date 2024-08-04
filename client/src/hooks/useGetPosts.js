@@ -12,7 +12,7 @@ const useGetPosts = () => {
         const fetchPosts = async () => {
             setLoading(true)
             try {
-                const res = await axios.get(`http://localhost:5000/api/post`)
+                const res = await axios.get(`https://full-stack-social-media-pq4h.onrender.com/api/post`)
                 if (res?.status === 200) {
                     setPosts(res?.data)
                 }

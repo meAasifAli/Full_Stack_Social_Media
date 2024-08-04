@@ -12,7 +12,7 @@ const useLogin = () => {
     const handleLogin = async (inputs) => {
         setLoading(true)
         try {
-            const res = await axios.post(`http://localhost:5000/api/auth/login`, inputs)
+            const res = await axios.post(`https://full-stack-social-media-pq4h.onrender.com/api/auth/login`, inputs)
             if (res?.status === 200) {
                 setAuthUser(res?.data)
                 localStorage?.setItem("authUser", JSON.stringify(res?.data))

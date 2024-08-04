@@ -9,7 +9,7 @@ const useGetMessages = (receiverID) => {
     useEffect(() => {
         const fetchMessages = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/message/getall/${receiverID}`)
+                const res = await axios.get(`https://full-stack-social-media-pq4h.onrender.com/api/message/getall/${receiverID}`)
 
                 if (res?.status === 200) {
                     setMessages(res?.data)

@@ -12,7 +12,7 @@ const useSendMessage = (receiverID) => {
     const handleSendMessage = async (message) => {
         setLoading(true)
         try {
-            const res = await axios.post(`http://localhost:5000/api/message/send/${receiverID}`, message)
+            const res = await axios.post(`https://full-stack-social-media-pq4h.onrender.com/api/message/send/${receiverID}`, message)
             if (res?.status === 201) {
                 setMessages([...messages, res.data])
             }

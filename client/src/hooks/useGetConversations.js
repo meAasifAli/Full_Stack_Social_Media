@@ -11,7 +11,7 @@ const useGetConversations = () => {
         const getConversations = async () => {
             setLoading(true)
             try {
-                const res = await axios.get(`http://localhost:5000/api/user`)
+                const res = await axios.get(`https://full-stack-social-media-pq4h.onrender.com/api/user`)
                 if (res?.status === 200) {
                     setConversations(res?.data)
                 }
